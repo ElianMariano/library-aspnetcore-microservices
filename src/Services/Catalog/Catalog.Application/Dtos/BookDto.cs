@@ -1,3 +1,3 @@
 namespace Catalog.Application.Dtos;
 
-public record BookDto(Guid bookId, string title, string isbn, int publicationYear, Guid authorId, Guid categoryId);
+public record BookDto(Guid id, string title, string isbn, int publicationYear, Guid authorId, Guid categoryId);
