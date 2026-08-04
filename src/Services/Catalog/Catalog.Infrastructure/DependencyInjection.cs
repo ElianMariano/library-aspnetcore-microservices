@@ -1,3 +1,4 @@
+using Catalog.Application.Data;
 using Catalog.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +11,8 @@ public static class DependencyInjection
 {
     public static void Configuration(this IServiceCollection builder, string connectionString)
     {
-        builder.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+        builder.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
         builder.AddScoped<IDbConnection>(sp => new NpgsqlConnection(connectionString));
-        //builder.AddScoped<IUnitOfWork, UnitOfWork>();
+        builder.AddScoped<IApplicationDbContext, ApplicationDbContext>();
     }
 }
