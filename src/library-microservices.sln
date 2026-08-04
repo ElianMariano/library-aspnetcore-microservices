@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Api", "Services\Catalog\Catalog.Api\Catalog.Api.csproj", "{8A74A037-1F47-4A19-A277-F800EC957C2C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{4C382366-76E7-439A-806F-C95FB0E629D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Domain", "Services\Inventory\Inventory.Domain\Inventory.Domain.csproj", "{03D72F54-BB84-48CB-B63F-8E12B0DA083F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,10 @@ Global
 		{8A74A037-1F47-4A19-A277-F800EC957C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A74A037-1F47-4A19-A277-F800EC957C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A74A037-1F47-4A19-A277-F800EC957C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D72F54-BB84-48CB-B63F-8E12B0DA083F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D72F54-BB84-48CB-B63F-8E12B0DA083F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D72F54-BB84-48CB-B63F-8E12B0DA083F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D72F54-BB84-48CB-B63F-8E12B0DA083F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +64,8 @@ Global
 		{12B20002-1A1C-45DD-9968-D18F93A37135} = {B8825075-BD51-4DCE-AF00-9BF7E654BC1B}
 		{EC4D8D6D-7F48-41B9-8C43-70D0DB74C515} = {B8825075-BD51-4DCE-AF00-9BF7E654BC1B}
 		{8A74A037-1F47-4A19-A277-F800EC957C2C} = {B8825075-BD51-4DCE-AF00-9BF7E654BC1B}
+		{4C382366-76E7-439A-806F-C95FB0E629D8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{03D72F54-BB84-48CB-B63F-8E12B0DA083F} = {4C382366-76E7-439A-806F-C95FB0E629D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E84678D-1ADB-4DDB-9D43-108F1EFDB5B4}
