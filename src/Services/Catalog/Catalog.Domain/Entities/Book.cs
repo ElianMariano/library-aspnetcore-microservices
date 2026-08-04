@@ -16,6 +16,11 @@ public class Book
 
     public CategoryId CategoryId { get; set; }
 
+    public Author Author { get; private init; } = null!;
+
+    public Category Category { get; private init; } = null!;
+
+
     public Book(
         string title,
         string isbn,

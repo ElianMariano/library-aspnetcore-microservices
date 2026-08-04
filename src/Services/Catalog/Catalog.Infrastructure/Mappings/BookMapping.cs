@@ -11,14 +11,30 @@ public class BookMapping : IEntityTypeConfiguration<Book>
     public void Configure(EntityTypeBuilder<Book> builder)
     {
         builder.ToTable(nameof(Book));
-        builder.HasKey(i => i.Id);
-        builder.Property(i => i.Id)
+        builder.HasKey(b => b.Id);
+        builder.Property(b => b.Id)
             .HasConversion(id => id.Value, value => new BookId(value));
-        builder.Property(c => c.Title)
+        builder.Property(b => b.Title)
             .IsRequired()
             .HasMaxLength(BookConstraints.BookTitleMaxCharacters);
-        builder.Property(c => c.ISBN)
+        builder.Property(b => b.ISBN)
             .IsRequired()
             .HasMaxLength(BookConstraints.BookISBNMaxCharacters);
+        builder.Property(b => b.ISBN)
+            .IsRequired();
+        builder.Property(b => b.AuthorId)
+            .HasConversion(authorId => authorId.Value, value => new AuthorId(value));
+        builder.HasOne(b => b.Author)
+            .WithMany()
+            .HasForeignKey(b => b.AuthorId);
+        builder.Navigation(b => b.Author)
+            .AutoInclude();
+        builder.Property(b => b.CategoryId)
+            .HasConversion(categoryId => categoryId.Value, value => new CategoryId(value));
+        builder.HasOne(b => b.Category)
+            .WithMany()
+            .HasForeignKey(b => b.CategoryId);
+        builder.Navigation(b => b.Category)
+            .AutoInclude();
     }
 }
