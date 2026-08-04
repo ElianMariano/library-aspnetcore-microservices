@@ -1,7 +1,7 @@
 using BuildingBlocks;
 using Catalog.Application.Data;
+using Catalog.Application.Exceptions;
 using Catalog.Application.Extensions;
-using Catalog.Domain.Entities;
 using Catalog.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +18,7 @@ public class DeleteCategoryHandler(
         var category = await context.Categories.FindAsync([categoryId], cancellationToken: cancellationToken);
         if (category is null)
         {
-            throw new Exception(nameof(Category));
+            throw new CategoryNotFoundException(request.categoryId);
         }
         context.Categories.Remove(category);
         await context.SaveChangesAsync(cancellationToken);

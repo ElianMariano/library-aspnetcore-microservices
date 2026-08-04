@@ -1,7 +1,7 @@
 using BuildingBlocks;
 using Catalog.Application.Data;
 using Catalog.Application.Dtos;
-using Catalog.Domain.Entities;
+using Catalog.Application.Exceptions;
 using Catalog.Domain.ValueObjects;
 
 namespace Catalog.Application.Handlers.Books.Queries.GetById;
@@ -16,7 +16,7 @@ public class GetBookByIdHandler(
         var book = await context.Books.FindAsync([bookId], cancellationToken: cancellationToken);
         if (book is null)
         {
-            throw new Exception(nameof(Book));
+            throw new BookNotFoundException(request.bookId);
         }
         var data = new BookDto(
             book.Id.Value,

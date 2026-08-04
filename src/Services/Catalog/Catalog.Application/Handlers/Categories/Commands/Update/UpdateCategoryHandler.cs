@@ -1,5 +1,6 @@
 using BuildingBlocks;
 using Catalog.Application.Data;
+using Catalog.Application.Exceptions;
 using Catalog.Application.Extensions;
 using Catalog.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
@@ -17,7 +18,7 @@ public class UpdateCategoryHandler(
         var category = await context.Categories.FindAsync([categoryId], cancellationToken: cancellationToken);
         if (category is null)
         {
-            throw new Exception(nameof(category));
+            throw new CategoryNotFoundException(request.category.categoryId);
         }
         category.Update(request.category.name);
         context.Categories.Update(category);

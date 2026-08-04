@@ -1,5 +1,6 @@
 using BuildingBlocks;
 using Catalog.Application.Data;
+using Catalog.Application.Exceptions;
 using Catalog.Application.Extensions;
 using Catalog.Domain.Entities;
 using Catalog.Domain.ValueObjects;
@@ -18,7 +19,7 @@ public class DeleteBookHandler(
         var book = await context.Books.FindAsync([bookId], cancellationToken: cancellationToken);
         if (book is null)
         {
-            throw new Exception(nameof(Book));
+            throw new BookNotFoundException(request.bookId);
         }
         context.Books.Remove(book);
         await context.SaveChangesAsync(cancellationToken);

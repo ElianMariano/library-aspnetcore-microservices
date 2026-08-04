@@ -1,7 +1,7 @@
 using BuildingBlocks;
 using Catalog.Application.Data;
 using Catalog.Application.Dtos;
-using Catalog.Domain.Entities;
+using Catalog.Application.Exceptions;
 using Catalog.Domain.ValueObjects;
 
 namespace Catalog.Application.Handlers.Authors.Queries.GetById;
@@ -16,7 +16,7 @@ public class GetAuthorByIdHandler(
         var author = await context.Authors.FindAsync([authorId], cancellationToken: cancellationToken);
         if (author is null)
         {
-            throw new Exception(nameof(Author));
+            throw new BookNotFoundException(request.authorId);
         }
         var data = new AuthorDto(
             author.Id.Value,

@@ -1,7 +1,7 @@
 using BuildingBlocks;
 using Catalog.Application.Data;
+using Catalog.Application.Exceptions;
 using Catalog.Application.Extensions;
-using Catalog.Domain.Entities;
 using Catalog.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +18,7 @@ public class UpdateAuthorHandler(
         var author = await context.Authors.FindAsync([authorId], cancellationToken: cancellationToken);
         if (author is null)
         {
-            throw new Exception(nameof(Author));
+            throw new BookNotFoundException(request.author.authorId);
         }
         author.Update(request.author.name);
         context.Authors.Update(author);

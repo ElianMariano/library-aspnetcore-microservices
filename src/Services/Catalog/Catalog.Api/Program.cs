@@ -1,6 +1,7 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Catalog.Infrastructure;
+using Catalog.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ builder.Services.SwaggerDocument(options =>
 
 builder.Services.Configuration(builder.Configuration.GetConnectionString("DefaultConnection")!);
 builder.Services.AddApplicationServices();
-//builder.Services.AddExceptionHandler<ExceptionMiddleware>();
+builder.Services.AddExceptionHandler<ExceptionMiddleware>();
 builder.Services.AddProblemDetails();
 
 var app = builder.Build();
