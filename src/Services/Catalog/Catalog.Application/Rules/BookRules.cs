@@ -26,16 +26,4 @@ public static class BookRules
             .NotEmpty()
             .MaximumLength(BookConstraints.BookISBNMaxCharacters);
     }
-
-    public static IRuleBuilderOptions<T, Guid> AuthorId<T>(
-        this IRuleBuilder<T, Guid> rule)
-    {
-        return rule.NotEmpty();
-    }
-    public static IRuleBuilderOptions<T, Guid> CategoryId<T>(
-        this IRuleBuilder<T, Guid> rule)
-    {
-        return rule.NotEmpty();
-    }
-
 }

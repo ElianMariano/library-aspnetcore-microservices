@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Catalog.Application.Handlers.Books;
 
-public static class IncludeBooksHandler
+public static class IncludeBookHandlers
 {
     public static void Include(IServiceCollection builder)
     {
