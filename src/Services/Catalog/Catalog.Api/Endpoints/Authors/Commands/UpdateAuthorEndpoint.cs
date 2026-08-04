@@ -14,7 +14,7 @@ public class UpdateAuthorEndpoint : Endpoint<UpdateAuthorCommand, UpdateAuthorRe
 
     public override void Configure()
     {
-        Put("/Author");
+        Put("/author");
 
         Description(x =>
         {
