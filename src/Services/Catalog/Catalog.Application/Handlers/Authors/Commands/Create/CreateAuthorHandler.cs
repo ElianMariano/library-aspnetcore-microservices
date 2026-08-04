@@ -1,6 +1,6 @@
 using BuildingBlocks;
+using BuildingBlocks.Extensions;
 using Catalog.Application.Data;
-using Catalog.Application.Extensions;
 using Catalog.Domain.Entities;
 using Microsoft.Extensions.Logging;
 

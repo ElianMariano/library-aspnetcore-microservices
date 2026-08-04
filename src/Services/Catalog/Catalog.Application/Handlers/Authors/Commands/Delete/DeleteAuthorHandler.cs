@@ -1,7 +1,7 @@
 using BuildingBlocks;
 using Catalog.Application.Data;
 using Catalog.Application.Exceptions;
-using Catalog.Application.Extensions;
+using BuildingBlocks.Extensions;
 using Catalog.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 

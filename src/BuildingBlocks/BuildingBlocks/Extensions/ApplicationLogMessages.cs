@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace Catalog.Application.Extensions;
+namespace BuildingBlocks.Extensions;
 
 public static class ApplicationLogMessages
 {
