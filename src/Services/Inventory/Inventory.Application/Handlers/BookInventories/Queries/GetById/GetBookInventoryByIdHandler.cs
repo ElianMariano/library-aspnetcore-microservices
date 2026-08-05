@@ -24,8 +24,6 @@ public class GetBookInventoryByIdHandler(
             bookInventory.TotalCopies,
             bookInventory.AvailableCopies,
             bookInventory.ReservedCopies);
-        await context.BookInventories.AddAsync(bookInventory, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
         return new GetBookInventoryByIdResult(data);
     }
 }

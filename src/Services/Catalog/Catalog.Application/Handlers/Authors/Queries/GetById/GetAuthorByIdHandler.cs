@@ -21,8 +21,6 @@ public class GetAuthorByIdHandler(
         var data = new AuthorDto(
             author.Id.Value,
             author.Name);
-        await context.Authors.AddAsync(author, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
         return new GetAuthorByIdResult(data);
     }
 }

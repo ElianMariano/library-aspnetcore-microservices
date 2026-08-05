@@ -24,8 +24,6 @@ public class GetReservationByIdHandler(
             reservation.UserId,
             reservation.Quantity,
             reservation.ExpiresAt);
-        await context.Reservations.AddAsync(reservation, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
         return new GetReservationByIdResult(data);
     }
 }

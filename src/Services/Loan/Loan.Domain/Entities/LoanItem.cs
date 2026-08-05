@@ -1,16 +1,20 @@
+using Loan.Domain.ValueObjects;
+
 namespace Loan.Domain.Entities;
 
 public class LoanItem
 {
-    public Guid LoanId { get; private init; }
+    public LoanRegistryId LoanRegistryId { get; private init; }
 
     public Guid BookId { get; private init; }
 
+    public LoanRegistry LoanRegistry { get; private init; } = null!;
+
     public LoanItem(
-        Guid loanId,
+        LoanRegistryId loanRegistryId,
         Guid bookId)
     {
-        LoanId = loanId;
+        LoanRegistryId = loanRegistryId;
         BookId = bookId;
     }
 }

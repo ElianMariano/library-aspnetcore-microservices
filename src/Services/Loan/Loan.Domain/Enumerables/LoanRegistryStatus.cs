@@ -1,6 +1,6 @@
 namespace Loan.Domain.Enumerables;
 
-public enum LoanStatus
+public enum LoanRegistryStatus
 {
     Pending,
 

@@ -26,8 +26,6 @@ public class GetBookByIdHandler(
             book.AuthorId.Value,
             book.CategoryId.Value
         );
-        await context.Books.AddAsync(book, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
         return new GetBookByIdResult(data);
     }
 }
