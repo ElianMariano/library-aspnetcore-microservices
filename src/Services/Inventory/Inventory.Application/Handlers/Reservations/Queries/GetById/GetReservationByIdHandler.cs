@@ -1,6 +1,7 @@
 using BuildingBlocks;
 using Inventory.Application.Data;
 using Inventory.Application.Dtos;
+using Inventory.Application.Exceptions;
 using Inventory.Domain.ValueObjects;
 
 namespace Inventory.Application.Handlers.Reservations.Queries.GetById;
@@ -15,8 +16,7 @@ public class GetReservationByIdHandler(
         var reservation = await context.Reservations.FindAsync([reservationId], cancellationToken: cancellationToken);
         if (reservation is null)
         {
-            // TODO: Implement proper exception handling
-            throw new Exception();
+            throw new ReservationNotFoundException(request.reservationId);
         }
         var data = new ReservationDto(
             reservation.Id.Value,

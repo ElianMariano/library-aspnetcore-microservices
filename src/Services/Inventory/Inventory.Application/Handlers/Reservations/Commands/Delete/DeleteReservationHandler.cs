@@ -1,6 +1,7 @@
 using BuildingBlocks;
 using BuildingBlocks.Extensions;
 using Inventory.Application.Data;
+using Inventory.Application.Exceptions;
 using Inventory.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 
@@ -17,8 +18,7 @@ public class DeleteReservationHandler(
         var reservation = await context.Reservations.FindAsync([reservationId], cancellationToken: cancellationToken);
         if (reservation is null)
         {
-            // TODO: Add proper exception handling
-            throw new Exception();
+            throw new ReservationNotFoundException(request.reservationId);
         }
         context.Reservations.Remove(reservation);
         await context.SaveChangesAsync(cancellationToken);
