@@ -1,8 +1,8 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
-using Catalog.Infrastructure;
-using Catalog.Api.Middlewares;
-using Catalog.Application;
+using Inventory.Api.Middlewares;
+using Inventory.Infrastructure;
+using Inventory.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +13,9 @@ builder.Services.SwaggerDocument(options =>
 {
     options.DocumentSettings = settings =>
     {
-        settings.Title = "Catalog API";
+        settings.Title = "Inventory API";
         settings.Version = "v1";
-        settings.Description = "Catalog API for managing Books, Authors and Categories.";
+        settings.Description = "Inventory API for managing BookInventories and Reservations.";
     };
     options.AutoTagPathSegmentIndex = 0;
 });

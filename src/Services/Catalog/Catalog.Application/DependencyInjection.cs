@@ -3,6 +3,8 @@ using Catalog.Application.Handlers.Books;
 using Catalog.Application.Handlers.Categorys;
 using Microsoft.Extensions.DependencyInjection;
 
+namespace Catalog.Application;
+
 public static class DependencyInjection
 {
     public static void AddApplicationServices(this IServiceCollection builder)
