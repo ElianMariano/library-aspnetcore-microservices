@@ -9,4 +9,4 @@ public record MemberDto(
     MemberStatus status,
     int activeLoans,
     int maxLoans,
-    int hasOverdueLoan);
+    bool hasOverdueLoan);
