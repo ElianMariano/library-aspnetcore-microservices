@@ -21,7 +21,7 @@ public class GetBooksPagedHandler(
         var data = books.Select(book => new BookDto(
             book.Id.Value,
             book.Title,
-            book.ISBN,
+            book.Isbn,
             book.PublicationYear,
             book.AuthorId.Value,
             book.CategoryId.Value)).ToList();

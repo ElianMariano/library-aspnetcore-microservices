@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Loan.Infrastructure.Mappings;
 
-public class LoanRegistryMapping
+public class LoanRegistryMapping : IEntityTypeConfiguration<LoanRegistry>
 {
     public void Configure(EntityTypeBuilder<LoanRegistry> builder)
     {
@@ -23,5 +23,8 @@ public class LoanRegistryMapping
             .IsRequired(false);
         builder.Property(lr => lr.Status)
             .IsRequired();
+        builder.HasMany(x => x.Items)
+            .WithOne()
+            .HasForeignKey(x => x.LoanRegistryId);
     }
 }

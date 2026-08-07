@@ -21,7 +21,7 @@ public class GetBookByIdHandler(
         var data = new BookDto(
             book.Id.Value,
             book.Title,
-            book.ISBN,
+            book.Isbn,
             book.PublicationYear,
             book.AuthorId.Value,
             book.CategoryId.Value

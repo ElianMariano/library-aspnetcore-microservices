@@ -8,7 +8,7 @@ public class Book
 
     public string Title { get; set; }
 
-    public string ISBN { get; set; }
+    public string Isbn { get; set; }
 
     public int PublicationYear { get; set; }
 
@@ -30,7 +30,7 @@ public class Book
     {
         Id = new BookId(Guid.NewGuid());
         Title = title;
-        ISBN = isbn;
+        Isbn = isbn;
         PublicationYear = publicationYear;
         AuthorId = authorId;
         CategoryId = categoryId;
@@ -42,7 +42,7 @@ public class Book
         int publicationYear)
     {
         Title = title;
-        ISBN = isbn;
+        Isbn = isbn;
         PublicationYear = publicationYear;
     }
 }

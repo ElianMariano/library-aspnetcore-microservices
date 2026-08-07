@@ -17,10 +17,10 @@ public class BookMapping : IEntityTypeConfiguration<Book>
         builder.Property(b => b.Title)
             .IsRequired()
             .HasMaxLength(BookConstraints.BookTitleMaxCharacters);
-        builder.Property(b => b.ISBN)
+        builder.Property(b => b.Isbn)
             .IsRequired()
             .HasMaxLength(BookConstraints.BookISBNMaxCharacters);
-        builder.Property(b => b.ISBN)
+        builder.Property(b => b.PublicationYear)
             .IsRequired();
         builder.Property(b => b.AuthorId)
             .HasConversion(authorId => authorId.Value, value => new AuthorId(value));

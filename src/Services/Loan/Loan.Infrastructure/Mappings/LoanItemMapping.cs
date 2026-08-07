@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Loan.Infrastructure.Mappings;
 
-public class LoanItemMapping
+public class LoanItemMapping : IEntityTypeConfiguration<LoanItem>
 {
     public void Configure(EntityTypeBuilder<LoanItem> builder)
     {
         builder.ToTable(nameof(LoanItem));
-        builder.HasKey(lr => new { lr.LoanRegistryId.Value, lr.BookId});
+        builder.HasKey(lr => new { lr.LoanRegistryId, lr.BookId});
         builder.Property(lr => lr.LoanRegistryId)
             .HasConversion(id => id.Value, value => new LoanRegistryId(value))
             .IsRequired();
