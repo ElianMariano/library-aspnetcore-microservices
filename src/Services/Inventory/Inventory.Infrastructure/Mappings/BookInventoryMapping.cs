@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Inventory.Infrastructure.Mappings;
 
-public class BookInventoryMapping
+public class BookInventoryMapping : IEntityTypeConfiguration<BookInventory>
 {
     public void Configure(EntityTypeBuilder<BookInventory> builder)
     {
