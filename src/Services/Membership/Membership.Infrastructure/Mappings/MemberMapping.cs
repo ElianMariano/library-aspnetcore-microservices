@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Membership.Infrastructure.Mappings;
 
-public class MemberMapping
+public class MemberMapping : IEntityTypeConfiguration<Member>
 {
     public void Configure(EntityTypeBuilder<Member> builder)
     {
         builder.ToTable(nameof(Member));
-        builder.HasKey(m => m.Id.Value);
+        builder.HasKey(m => m.Id);
         builder.Property(m => m.Id)
             .HasConversion(id => id.Value, value => new MemberId(value))
             .IsRequired();
