@@ -35,4 +35,9 @@ app.UseFastEndpoints();
 app.UseOpenApi();
 app.UseSwaggerUi();
 
+if (app.Environment.IsDevelopment())
+{
+    await app.Services.InitialiseDatabaseAsync();
+}
+
 app.Run();
