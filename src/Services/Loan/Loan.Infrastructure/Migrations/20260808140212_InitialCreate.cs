@@ -31,31 +31,25 @@ namespace Loan.Infrastructure.Migrations
                 name: "LoanItem",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     LoanRegistryId = table.Column<Guid>(type: "uuid", nullable: false),
-                    BookId = table.Column<Guid>(type: "uuid", nullable: false),
-                    LoanRegistryId1 = table.Column<Guid>(type: "uuid", nullable: false)
+                    BookId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LoanItem", x => new { x.LoanRegistryId, x.BookId });
+                    table.PrimaryKey("PK_LoanItem", x => x.Id);
                     table.ForeignKey(
                         name: "FK_LoanItem_LoanRegistry_LoanRegistryId",
                         column: x => x.LoanRegistryId,
                         principalTable: "LoanRegistry",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LoanItem_LoanRegistry_LoanRegistryId1",
-                        column: x => x.LoanRegistryId1,
-                        principalTable: "LoanRegistry",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_LoanItem_LoanRegistryId1",
+                name: "IX_LoanItem_LoanRegistryId",
                 table: "LoanItem",
-                column: "LoanRegistryId1");
+                column: "LoanRegistryId");
         }
 
         /// <inheritdoc />

@@ -10,14 +10,19 @@ public class LoanItemMapping : IEntityTypeConfiguration<LoanItem>
     public void Configure(EntityTypeBuilder<LoanItem> builder)
     {
         builder.ToTable(nameof(LoanItem));
-        builder.HasKey(lr => new { lr.LoanRegistryId, lr.BookId});
+        builder.HasKey(lr => lr.Id);
+        builder.Property(lr => lr.Id)
+            .HasConversion(id => id.Value, value => new LoanItemId(value));
         builder.Property(lr => lr.LoanRegistryId)
             .HasConversion(id => id.Value, value => new LoanRegistryId(value))
             .IsRequired();
-        builder.Property(lr => lr.BookId)
+        builder.HasOne(lr => lr.LoanRegistry)
+            .WithMany(lr => lr.Items)
+            .HasForeignKey(li => li.LoanRegistryId)
+            .HasPrincipalKey(lr => lr.Id);
+        builder.Navigation(lr => lr.LoanRegistry)
+            .AutoInclude();
+        builder.Property(li => li.BookId)
             .IsRequired();
-        builder.HasOne(x => x.LoanRegistry)
-            .WithMany(x => x._items)
-            .HasForeignKey(x => x.LoanRegistryId);
     }
 }

@@ -24,18 +24,18 @@ namespace Loan.Infrastructure.Migrations
 
             modelBuilder.Entity("Loan.Domain.Entities.LoanItem", b =>
                 {
-                    b.Property<Guid>("LoanRegistryId")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("BookId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("LoanRegistryId1")
+                    b.Property<Guid>("LoanRegistryId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("LoanRegistryId", "BookId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("LoanRegistryId1");
+                    b.HasIndex("LoanRegistryId");
 
                     b.ToTable("LoanItem", (string)null);
                 });
@@ -67,15 +67,9 @@ namespace Loan.Infrastructure.Migrations
 
             modelBuilder.Entity("Loan.Domain.Entities.LoanItem", b =>
                 {
-                    b.HasOne("Loan.Domain.Entities.LoanRegistry", null)
+                    b.HasOne("Loan.Domain.Entities.LoanRegistry", "LoanRegistry")
                         .WithMany("Items")
                         .HasForeignKey("LoanRegistryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Loan.Domain.Entities.LoanRegistry", "LoanRegistry")
-                        .WithMany("_items")
-                        .HasForeignKey("LoanRegistryId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -85,8 +79,6 @@ namespace Loan.Infrastructure.Migrations
             modelBuilder.Entity("Loan.Domain.Entities.LoanRegistry", b =>
                 {
                     b.Navigation("Items");
-
-                    b.Navigation("_items");
                 });
 #pragma warning restore 612, 618
         }

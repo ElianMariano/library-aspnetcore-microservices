@@ -4,6 +4,8 @@ namespace Loan.Domain.Entities;
 
 public class LoanItem
 {
+    public LoanItemId Id { get; private init; }
+
     public LoanRegistryId LoanRegistryId { get; private init; }
 
     public Guid BookId { get; private init; }
@@ -14,6 +16,7 @@ public class LoanItem
         LoanRegistryId loanRegistryId,
         Guid bookId)
     {
+        Id = new LoanItemId(Guid.NewGuid());
         LoanRegistryId = loanRegistryId;
         BookId = bookId;
     }

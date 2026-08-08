@@ -12,7 +12,8 @@ public class LoanRegistryMapping : IEntityTypeConfiguration<LoanRegistry>
         builder.ToTable(nameof(LoanRegistry));
         builder.HasKey(lr => lr.Id);
         builder.Property(lr => lr.Id)
-            .HasConversion(id => id.Value, value => new LoanRegistryId(value));
+            .HasConversion(id => id.Value, value => new LoanRegistryId(value))
+            .IsRequired();
         builder.Property(lr => lr.UserId)
             .IsRequired();
         builder.Property(lr => lr.LoanDate)
@@ -23,8 +24,9 @@ public class LoanRegistryMapping : IEntityTypeConfiguration<LoanRegistry>
             .IsRequired(false);
         builder.Property(lr => lr.Status)
             .IsRequired();
-        builder.HasMany(x => x.Items)
-            .WithOne()
-            .HasForeignKey(x => x.LoanRegistryId);
+        builder.HasMany(lr => lr.Items)
+            .WithOne(li => li.LoanRegistry)
+            .HasForeignKey(li => li.LoanRegistryId)
+            .IsRequired();
     }
 }

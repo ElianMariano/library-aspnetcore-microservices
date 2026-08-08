@@ -17,7 +17,7 @@ public class LoanRegistry
 
     public LoanRegistryStatus Status { get; private set; }
 
-    public List<LoanItem> _items { get; private set; } = new List<LoanItem>();
+    private List<LoanItem> _items = [];
 
     public IReadOnlyCollection<LoanItem> Items => _items.AsReadOnly();
 
