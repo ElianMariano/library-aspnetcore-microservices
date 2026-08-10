@@ -1,4 +1,12 @@
 services:
+  yarpapigateway:
+    image: ${DOCKER_REGISTRY-}yarpapigateway
+    build:
+      context: .
+      dockerfile: YarpApiGateway/Dockerfile
+    ports:
+      - "5000:8080"
+
   loan.api:
     image: ${DOCKER_REGISTRY-}loanapi
     build:
