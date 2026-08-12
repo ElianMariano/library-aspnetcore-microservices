@@ -20,6 +20,7 @@ builder.Services.SwaggerDocument(options =>
     options.AutoTagPathSegmentIndex = 0;
 });
 
+builder.Services.AddGrpc();
 builder.Services.Configuration(builder.Configuration.GetConnectionString("DefaultConnection")!);
 builder.Services.AddApplicationServices();
 builder.Services.BrokerConfig(builder.Configuration);
