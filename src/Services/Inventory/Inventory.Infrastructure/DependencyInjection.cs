@@ -1,5 +1,7 @@
 using Inventory.Application.Data;
+using Inventory.Application.Services;
 using Inventory.Infrastructure.Persistence;
+using Inventory.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
@@ -23,5 +25,6 @@ public static class DependencyInjection
         builder.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
         builder.AddScoped<IDbConnection>(sp => new NpgsqlConnection(connectionString));
         builder.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+        builder.AddScoped<ICheckStockService, CheckStockService>();
     }
 }
