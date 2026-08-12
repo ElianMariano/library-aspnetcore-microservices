@@ -65,4 +65,9 @@ public class Member
     {
         Status = newStatus;
     }
+
+    public bool AbleToLoan(int quantity)
+    {
+        return ((this.ActiveLoans + quantity) <= this.MaxLoans) || this.HasOverdueLoan == false;
+    }
 }
