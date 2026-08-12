@@ -12,13 +12,13 @@ public class Reservation
 
     public int Quantity { get; set; }
 
-    public DateTime ExpiresAt { get; set; }
+    public DateOnly ExpiresAt { get; set; }
 
     public Reservation(
         Guid bookId,
         Guid userId,
         int quantity,
-        DateTime expiresAt)
+        DateOnly expiresAt)
     {
         Id = new ReservationId(Guid.NewGuid());
         BookId = bookId;

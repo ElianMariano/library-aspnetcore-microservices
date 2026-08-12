@@ -1,4 +1,4 @@
-namespace Inventory.Domain.Abstractions;
+﻿namespace BuildingBlocks.Messaging.Abstractions;
 
 public interface IEvent
 {
