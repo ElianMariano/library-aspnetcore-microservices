@@ -1,4 +1,5 @@
 using Membership.Domain.Enumerations;
+using Membership.Domain.Exceptions;
 using Membership.Domain.ValueObjects;
 
 namespace Membership.Domain.Entities;
@@ -42,14 +43,22 @@ public class Member
         Email = email;
     }
 
-    public void UpdateLoanInfo(
-        int activeLoans,
-        int maxLoans,
-        bool hasOverdueLoan)
+    public void AddNewActiveLoans(int newActiveLoans)
     {
-        ActiveLoans = activeLoans;
-        MaxLoans = maxLoans;
-        HasOverdueLoan = hasOverdueLoan;
+        if ((this.ActiveLoans + newActiveLoans) >= this.MaxLoans)
+        {
+            throw new MaxLoansReachedException();
+        }
+        this.ActiveLoans += newActiveLoans;
+    }
+
+    public void RemoveActiveLoans(int removedActiveLoans)
+    {
+        if ((this.ActiveLoans - removedActiveLoans) < 0)
+        {
+            throw new ActiveLoansCannotBeNegativeException();
+        }
+        this.ActiveLoans -= removedActiveLoans;
     }
 
     public void UpdateStatus(MemberStatus newStatus)

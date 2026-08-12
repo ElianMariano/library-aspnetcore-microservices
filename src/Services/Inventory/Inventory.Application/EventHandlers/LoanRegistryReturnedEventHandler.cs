@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inventory.Application.EventHandlers;
 
-public class LoanRegisterReturnedConsumer(IApplicationDbContext dbContext) : IConsumer<LoanRegistryReturnedEvent>
+public class LoanRegistryReturnedEventHandler(IApplicationDbContext dbContext) : IConsumer<LoanRegistryReturnedEvent>
 {
     public async Task Consume(ConsumeContext<LoanRegistryReturnedEvent> context)
     {
