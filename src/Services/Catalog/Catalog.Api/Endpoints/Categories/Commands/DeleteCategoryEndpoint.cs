@@ -14,7 +14,7 @@ public class DeleteCategoryEndpoint : Endpoint<DeleteCategoryCommand, DeleteCate
 
     public override void Configure()
     {
-        Delete($"/category/{{itemId}}");
+        Delete($"/category/{{categoryId}}");
 
         Description(x =>
         {
