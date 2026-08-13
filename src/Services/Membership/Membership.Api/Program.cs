@@ -1,8 +1,10 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
-using Membership.Infrastructure;
-using Membership.Application;
 using Membership.Api.Middlewares;
+using Membership.Api.Services;
+using Membership.Application;
+using Membership.Infrastructure;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +29,24 @@ builder.Services.BrokerConfig(builder.Configuration);
 builder.Services.AddExceptionHandler<ExceptionMiddleware>();
 builder.Services.AddProblemDetails();
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // REST
+    options.ListenAnyIP(8080, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1;
+    });
+
+    // gRPC
+    options.ListenAnyIP(8081, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http2;
+    });
+});
+
 var app = builder.Build();
+
+app.MapGrpcService<MemberGrpcService>();
 
 app.UseRequestLocalization();
 

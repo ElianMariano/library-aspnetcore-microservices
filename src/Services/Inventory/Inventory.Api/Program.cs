@@ -1,8 +1,10 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Inventory.Api.Middlewares;
-using Inventory.Infrastructure;
+using Inventory.Api.Services;
 using Inventory.Application;
+using Inventory.Infrastructure;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +29,24 @@ builder.Services.BrokerConfig(builder.Configuration);
 builder.Services.AddExceptionHandler<ExceptionMiddleware>();
 builder.Services.AddProblemDetails();
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // REST
+    options.ListenAnyIP(8080, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1;
+    });
+
+    // gRPC
+    options.ListenAnyIP(8081, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http2;
+    });
+});
+
 var app = builder.Build();
+
+app.MapGrpcService<StockGrpcService>();
 
 app.UseRequestLocalization();
 
