@@ -4,13 +4,15 @@ using Inventory.Application.Exceptions;
 using Inventory.Domain.Entities;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Inventory.Application.EventHandlers;
 
-public class LoanRegistryCreatedEventHandler(IApplicationDbContext dbContext) : IConsumer<LoanRegistryCreatedEvent>
+public class LoanRegistryCreatedEventHandler(IApplicationDbContext dbContext, ILogger<LoanRegistryCreatedEventHandler> logger) : IConsumer<LoanRegistryCreatedEvent>
 {
     public async Task Consume(ConsumeContext<LoanRegistryCreatedEvent> context)
     {
+        logger.LogInformation("Inventory consumed event for loan registry {0}", context.Message.loanRegistryId);
         await UpdateBookInventory(context);
         await CreateReservation(context);
     }

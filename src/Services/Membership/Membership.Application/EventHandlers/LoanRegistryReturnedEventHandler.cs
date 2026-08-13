@@ -3,13 +3,15 @@ using MassTransit;
 using Membership.Application.Data;
 using Membership.Application.Exceptions;
 using Membership.Domain.ValueObjects;
+using Microsoft.Extensions.Logging;
 
 namespace Membership.Application.EventHandlers;
 
-public class LoanRegistryReturnedEventHandler(IApplicationDbContext dbContext) : IConsumer<LoanRegistryReturnedEvent>
+public class LoanRegistryReturnedEventHandler(IApplicationDbContext dbContext, ILogger<LoanRegistryReturnedEventHandler> logger) : IConsumer<LoanRegistryReturnedEvent>
 {
     public async Task Consume(ConsumeContext<LoanRegistryReturnedEvent> context)
     {
+        logger.LogInformation("Membership consumed event for loan registry {0}", context.Message.loanRegistryId);
         MemberId memberId = new MemberId(context.Message.userId);
         var member = await dbContext.Members.FindAsync(memberId);
         if (member == null)
@@ -17,5 +19,6 @@ public class LoanRegistryReturnedEventHandler(IApplicationDbContext dbContext) :
             throw new MemberNotFoundException(context.Message.userId);
         }
         member.RemoveActiveLoans(context.Message.items.Count);
+        await dbContext.SaveChangesAsync(CancellationToken.None);
     }
 }
