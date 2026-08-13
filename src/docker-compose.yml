@@ -15,6 +15,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
+      rabbitmq:
+        condition: service_healthy
       postgres:
         condition: service_healthy
 
@@ -26,6 +28,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
+      rabbitmq:
+        condition: service_healthy
       postgres:
         condition: service_healthy
   
@@ -37,6 +41,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
+      rabbitmq:
+        condition: service_healthy
       postgres:
         condition: service_healthy
 
@@ -78,6 +84,12 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   pgadmin:
     image: dpage/pgadmin4:latest
