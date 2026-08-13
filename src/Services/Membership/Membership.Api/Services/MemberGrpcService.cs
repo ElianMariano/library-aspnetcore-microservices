@@ -1,20 +1,17 @@
 ﻿using Grpc.Core;
 using Member.Grpc;
-using Membership.Application.Data;
-using Membership.Domain.ValueObjects;
+using Membership.Application.Services;
 
 namespace Membership.Api.Services;
 
-public class MemberGrpcService(IApplicationDbContext dbContext) : MemberService.MemberServiceBase
+public class MemberGrpcService(IMemberService service) : MemberService.MemberServiceBase
 {
     public override async Task<CanMakeLoanResponse> CanMakeLoan(CanMakeLoanRequest request, ServerCallContext context)
     {
-        MemberId memberId = new MemberId(Guid.Parse(request.MemberId));
-        var member = await dbContext.Members.FindAsync(memberId);
-        bool ableToLoan = member!.AbleToLoan(request.Quantity);
+        var response = await service.CanMakeLoan(new MemberServiceRequest(Guid.Parse(request.MemberId), request.Quantity));
         return new CanMakeLoanResponse
         {
-            AbleToLoan = ableToLoan,
+            AbleToLoan = response.ableToLoan,
         };
     }
 }

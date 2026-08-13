@@ -1,5 +1,7 @@
 using Membership.Application.Data;
+using Membership.Application.Services;
 using Membership.Infrastructure.Persistence;
+using Membership.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
@@ -23,5 +25,6 @@ public static class DependencyInjection
         builder.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
         builder.AddScoped<IDbConnection>(sp => new NpgsqlConnection(connectionString));
         builder.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+        builder.AddScoped<IMemberService, MemberService>();
     }
 }
