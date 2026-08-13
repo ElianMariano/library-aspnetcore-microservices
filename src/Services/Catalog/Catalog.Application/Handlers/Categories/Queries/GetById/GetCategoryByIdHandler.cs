@@ -21,8 +21,6 @@ public class GetCategoryByIdHandler(
         var data = new CategoryDto(
             category.Id.Value,
             category.Name);
-        await context.Categories.AddAsync(category, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
         return new GetCategoryByIdResult(data);
     }
 }
