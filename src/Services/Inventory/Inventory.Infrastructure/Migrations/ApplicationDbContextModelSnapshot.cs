@@ -52,8 +52,8 @@ namespace Inventory.Infrastructure.Migrations
                     b.Property<Guid>("BookId")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("ExpiresAt")
+                        .HasColumnType("date");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
