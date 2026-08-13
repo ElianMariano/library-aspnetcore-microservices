@@ -14,7 +14,7 @@ public class GetAuthorByIdEndpoint : Endpoint<GetAuthorByIdQuery, GetAuthorByIdR
 
     public override void Configure()
     {
-        Get($"/author");
+        Get($"/author/{{authorId}}");
 
         Description(x =>
         {

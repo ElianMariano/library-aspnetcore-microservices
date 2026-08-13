@@ -14,7 +14,7 @@ public class GetCategoryByIdEndpoint : Endpoint<GetCategoryByIdQuery, GetCategor
 
     public override void Configure()
     {
-        Get($"/category");
+        Get($"/category/{{categoryId}}");
 
         Description(x =>
         {

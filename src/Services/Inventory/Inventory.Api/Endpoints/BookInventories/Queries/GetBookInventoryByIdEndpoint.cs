@@ -14,7 +14,7 @@ public class GetBookInventoryByIdEndpoint : Endpoint<GetBookInventoryByIdQuery, 
 
     public override void Configure()
     {
-        Get($"/bookinventory");
+        Get($"/bookinventory/{{bookInventoryId}}");
 
         Description(x =>
         {

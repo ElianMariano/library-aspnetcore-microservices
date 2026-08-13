@@ -14,7 +14,7 @@ public class GetBookByIdEndpoint : Endpoint<GetBookByIdQuery, GetBookByIdResult>
 
     public override void Configure()
     {
-        Get($"/book");
+        Get($"/book/{{bookId}}");
 
         Description(x =>
         {

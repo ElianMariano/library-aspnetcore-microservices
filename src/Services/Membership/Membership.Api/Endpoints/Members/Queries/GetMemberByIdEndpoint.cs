@@ -15,7 +15,7 @@ public class GetMemberByIdEndpoint : Endpoint<GetMemberByIdQuery, GetMemberByIdR
 
     public override void Configure()
     {
-        Get($"/member");
+        Get($"/member/{{memberId}}");
 
         Description(x =>
         {

@@ -14,7 +14,7 @@ public class GetLoanRegistryByIdEndpoint : Endpoint<GetLoanRegistryByIdQuery, Ge
 
     public override void Configure()
     {
-        Get($"/loanregistry");
+        Get($"/loanregistry/{{loanRegistryId}}");
 
         Description(x =>
         {

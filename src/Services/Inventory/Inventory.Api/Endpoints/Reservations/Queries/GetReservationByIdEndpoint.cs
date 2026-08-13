@@ -14,7 +14,7 @@ public class GetReservationByIdEndpoint : Endpoint<GetReservationByIdQuery, GetR
 
     public override void Configure()
     {
-        Get($"/reservation");
+        Get($"/reservation/{{reservationId}}");
 
         Description(x =>
         {
