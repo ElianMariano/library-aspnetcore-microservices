@@ -1,7 +1,6 @@
 ﻿using BuildingBlocks.Messaging.Events;
 using Inventory.Application.Data;
 using Inventory.Application.Exceptions;
-using Inventory.Domain.Entities;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -14,29 +13,29 @@ public class InventoryLoanRegistryReturnedEventHandler(IApplicationDbContext dbC
     {
         logger.LogInformation("Inventory consumed event for loan registry {0}", context.Message.loanRegistryId);
         await UpdateBookInventory(context);
-        // TODO: Right now , we are deleting the reservation when the book is returned, but we could keep it and change its status to "returned" or "completed" instead of deleting it. This would allow us to keep a record of the reservation history for future reference.
+        // NOTE: Right now , we are deleting the reservation when the book is returned, but we could keep it and change its status to "returned" or "completed" instead of deleting it. This would allow us to keep a record of the reservation history for future reference.
         await DeleteReservation(context);
     }
 
     public async Task UpdateBookInventory(ConsumeContext<LoanRegistryReturnedEvent> context)
     {
-        foreach (Guid item in context.Message.items)
+        foreach (var item in context.Message.items)
         {
-            var bookInventory = await dbContext.BookInventories.FirstOrDefaultAsync(bookInventory => bookInventory.BookId == item);
+            var bookInventory = await dbContext.BookInventories.FirstOrDefaultAsync(bookInventory => bookInventory.BookId == item.bookId);
             if (bookInventory == null)
             {
-                throw new BookInventoryNotFoundException(item);
+                throw new BookInventoryNotFoundException(item.bookId);
             }
-            bookInventory.ReturnCopies();
+            bookInventory.ReturnCopies(item.quantity);
         }
         await dbContext.SaveChangesAsync(CancellationToken.None);
     }
 
     public async Task DeleteReservation(ConsumeContext<LoanRegistryReturnedEvent> context)
     {
-        foreach (Guid item in context.Message.items)
+        foreach (var item in context.Message.items)
         {
-            var reservation = await dbContext.Reservations.FirstOrDefaultAsync(reservation => reservation.BookId == item);
+            var reservation = await dbContext.Reservations.FirstOrDefaultAsync(reservation => reservation.BookId == item.bookId);
             if (reservation != null)
             {
                 dbContext.Reservations.Remove(reservation);

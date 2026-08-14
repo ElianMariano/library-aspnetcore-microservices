@@ -1,3 +1,3 @@
 namespace Loan.Application.Dtos;
 
-public record LoanItemDto(Guid loanRegistryId, Guid bookId);
+public record LoanItemDto(Guid loanRegistryId, Guid bookId, int quantity);

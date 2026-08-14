@@ -33,6 +33,7 @@ public class GetLoanRegistriesPagedHandler(
     {
         return loanRegistry.Items.Select(item => new LoanItemDto(
                 item.LoanRegistryId.Value,
-                item.BookId)).ToList();
+                item.BookId,
+                item.Quantity)).ToList();
     }
 }

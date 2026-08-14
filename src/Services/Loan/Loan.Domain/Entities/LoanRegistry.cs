@@ -49,9 +49,9 @@ public class LoanRegistry
         _items = items;
     }
 
-    public void AddItem(Guid bookId)
+    public void AddItem(Guid bookId, int quantity)
     {
-        var item = new LoanItem(this.Id, bookId);
+        var item = new LoanItem(this.Id, bookId, quantity);
         _items.Add(item);
     }
 

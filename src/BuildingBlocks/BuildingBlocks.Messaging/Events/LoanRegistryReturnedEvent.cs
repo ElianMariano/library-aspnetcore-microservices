@@ -9,4 +9,4 @@ public record LoanRegistryReturnedEvent(
     DateOnly dueDate,
     DateOnly? returnedDate,
     string status,
-    IReadOnlyCollection<Guid> items) : IEvent;
+    IReadOnlyCollection<LoanItemEventDto> items) : IEvent;

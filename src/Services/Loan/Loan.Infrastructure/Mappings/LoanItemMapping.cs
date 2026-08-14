@@ -24,5 +24,7 @@ public class LoanItemMapping : IEntityTypeConfiguration<LoanItem>
             .AutoInclude();
         builder.Property(li => li.BookId)
             .IsRequired();
+        builder.Property(li => li.Quantity)
+            .IsRequired();
     }
 }

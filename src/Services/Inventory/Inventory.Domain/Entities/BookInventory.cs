@@ -27,23 +27,19 @@ public class BookInventory
         ReservedCopies = reservedCopies;
     }
 
-    public void ReserveCopies()
+    public void ReserveCopies(int quantity)
     {
-        // TODO: Right now we are reserving only 1 copy, but we can change this to reserve more copies if needed.
-        int quantityToReserve = 1;
-        if (AvailableCopies < quantityToReserve)
+        if (AvailableCopies < quantity)
         {
             throw new UnavalilableCopiesToReserveException();
         }
-        AvailableCopies -= quantityToReserve;
-        ReservedCopies += quantityToReserve;
+        AvailableCopies -= quantity;
+        ReservedCopies += quantity;
     }
 
-    public void ReturnCopies()
+    public void ReturnCopies(int quantity)
     {
-        // TODO: Right now we are reserving only 1 copy, but we can change this to reserve more copies if needed.
-        int quantityToReturn = 1;
-        AvailableCopies += quantityToReturn;
-        ReservedCopies -= quantityToReturn;
+        AvailableCopies += quantity;
+        ReservedCopies -= quantity;
     }
 }

@@ -28,7 +28,7 @@ public class CreateLoanRegistryHandler(
             request.loanRegistry.userId,
             request.loanRegistry.dueDate,
             request.loanRegistry.status);
-        var items = request.loanRegistry.items.Select(x => new LoanItem(loanRegistry.Id, x.bookId)).ToList();
+        var items = request.loanRegistry.items.Select(x => new LoanItem(loanRegistry.Id, x.bookId, x.quantity)).ToList();
         loanRegistry.AddItems(items);
         await context.LoanRegistries.AddAsync(loanRegistry, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
@@ -46,19 +46,16 @@ public class CreateLoanRegistryHandler(
             loanRegistry.DueDate,
             loanRegistry.ReturnedDate,
             loanRegistry.Status.ToString(),
-            loanRegistry.Items.Select(i => i.BookId).ToList());
+            loanRegistry.Items.Select(i => new LoanItemEventDto(i.BookId, i.Quantity)).ToList());
         await publishEndpoint.Publish(loanRegistryCreatedEvent, cancellationToken);
     }
 
     private async Task ValidateInventory(CreateLoanRegistryCommand request, CancellationToken cancellationToken)
     {
-        // TODO: Right now it waits for all the tasks to complete, but it would be better to send all items at once to the grpc server
-        // TODO: For the moment it is only possible to loan a single specific book at once
-        int bookQuantity = 1;
         var tasks = request.loanRegistry.items
             .Select(item =>
                 inventoryService.CheckStock(
-                    new InventoryServiceRequest(item.bookId, bookQuantity)));
+                    new InventoryServiceRequest(item.bookId, item.quantity)));
 
         var responses = await Task.WhenAll(tasks);
 
@@ -73,8 +70,7 @@ public class CreateLoanRegistryHandler(
 
     private async Task ValidateMember(CreateLoanRegistryCommand request, CancellationToken cancellationToken)
     {
-        // TODO: For the moment it is only possible to loan a single specific book at once
-        int bookQuantity = 1;
+        int bookQuantity = request.loanRegistry.items.Sum(x => x.quantity);
         var response = await membershipService.CanMakeLoan(new MembershipServiceRequest(request.loanRegistry.userId, bookQuantity));
         if (response.ableToLoan == false)
         {

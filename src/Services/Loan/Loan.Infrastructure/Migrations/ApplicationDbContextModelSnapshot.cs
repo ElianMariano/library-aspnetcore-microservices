@@ -33,6 +33,9 @@ namespace Loan.Infrastructure.Migrations
                     b.Property<Guid>("LoanRegistryId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LoanRegistryId");

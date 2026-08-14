@@ -19,28 +19,26 @@ public class InventoryLoanRegistryCreatedEventHandler(IApplicationDbContext dbCo
 
     public async Task UpdateBookInventory(ConsumeContext<LoanRegistryCreatedEvent> context)
     {
-        // TODO: Right now we are updating all items inside a foreach loop, but we can optimize this by using a single query to update all items at once. This will reduce the number of database calls and improve performance.
-        foreach (Guid item in context.Message.items)
+        foreach (var item in context.Message.items)
         {
-            var bookInventory = await dbContext.BookInventories.FirstOrDefaultAsync(bookInventory => bookInventory.BookId == item);
+            var bookInventory = await dbContext.BookInventories.FirstOrDefaultAsync(bookInventory => bookInventory.BookId == item.bookId);
             if (bookInventory == null)
             {
-                throw new BookInventoryNotFoundException(item);
+                throw new BookInventoryNotFoundException(item.bookId);
             }
-            bookInventory.ReserveCopies();
+            bookInventory.ReserveCopies(item.quantity);
         }
         await dbContext.SaveChangesAsync(CancellationToken.None);
     }
 
     public async Task CreateReservation(ConsumeContext<LoanRegistryCreatedEvent> context)
     {
-        foreach (Guid item in context.Message.items)
+        foreach (var item in context.Message.items)
         {
-            // Assuming each item represents a single copy, you can set the quantity to 1. If you have a different logic for determining the quantity, you can adjust this accordingly.
             var reservation = new Reservation(
-                item,
+                item.bookId,
                 context.Message.userId,
-                1,
+                item.quantity,
                 context.Message.dueDate);
             await dbContext.Reservations.AddAsync(reservation);
         }

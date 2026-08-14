@@ -37,7 +37,7 @@ public class ReturnLoanRegistryHandler(
             loanRegistry.DueDate,
             loanRegistry.ReturnedDate,
             loanRegistry.Status.ToString(),
-            loanRegistry.Items.Select(i => i.BookId).ToList());
+            loanRegistry.Items.Select(i => new LoanItemEventDto(i.BookId, i.Quantity)).ToList());
         await publishEndpoint.Publish(loanRegistryCreatedEvent, cancellationToken);
     }
 }

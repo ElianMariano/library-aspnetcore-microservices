@@ -21,7 +21,8 @@ public class GetLoanRegistryByIdHandler(
         var items = loanRegistry.Items.Select(item =>
             new LoanItemDto(
                 item.LoanRegistryId.Value,
-                item.BookId)).ToList();
+                item.BookId,
+                item.Quantity)).ToList();
         var data = new LoanRegistryDto(
             loanRegistry.Id.Value,
             loanRegistry.UserId,
