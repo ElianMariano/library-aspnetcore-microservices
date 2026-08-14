@@ -28,5 +28,7 @@ public class LoanRegistryMapping : IEntityTypeConfiguration<LoanRegistry>
             .WithOne(li => li.LoanRegistry)
             .HasForeignKey(li => li.LoanRegistryId)
             .IsRequired();
+        builder.Navigation(lr => lr.Items)
+            .AutoInclude();
     }
 }

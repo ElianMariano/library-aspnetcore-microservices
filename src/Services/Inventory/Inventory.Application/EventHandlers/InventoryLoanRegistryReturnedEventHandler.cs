@@ -1,13 +1,14 @@
 ﻿using BuildingBlocks.Messaging.Events;
 using Inventory.Application.Data;
 using Inventory.Application.Exceptions;
+using Inventory.Domain.Entities;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Inventory.Application.EventHandlers;
 
-public class LoanRegistryReturnedEventHandler(IApplicationDbContext dbContext, ILogger<LoanRegistryReturnedEventHandler> logger) : IConsumer<LoanRegistryReturnedEvent>
+public class InventoryLoanRegistryReturnedEventHandler(IApplicationDbContext dbContext, ILogger<InventoryLoanRegistryReturnedEventHandler> logger) : IConsumer<LoanRegistryReturnedEvent>
 {
     public async Task Consume(ConsumeContext<LoanRegistryReturnedEvent> context)
     {

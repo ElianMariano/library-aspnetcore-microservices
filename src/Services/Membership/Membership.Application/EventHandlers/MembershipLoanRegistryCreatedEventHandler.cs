@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Membership.Application.EventHandlers;
 
-public class LoanRegistryCreatedEventHandler(IApplicationDbContext dbContext, ILogger<LoanRegistryCreatedEventHandler> logger) : IConsumer<LoanRegistryCreatedEvent>
+public class MembershipLoanRegistryCreatedEventHandler(IApplicationDbContext dbContext, ILogger<MembershipLoanRegistryCreatedEventHandler> logger) : IConsumer<LoanRegistryCreatedEvent>
 {
     public async Task Consume(ConsumeContext<LoanRegistryCreatedEvent> context)
     {

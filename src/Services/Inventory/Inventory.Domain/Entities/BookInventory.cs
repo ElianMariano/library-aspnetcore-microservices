@@ -43,9 +43,9 @@ public class BookInventory
 
     public void ReturnCopies()
     {
+        // TODO: Right now we are reserving only 1 copy, but we can change this to reserve more copies if needed.
         int quantityToReturn = 1;
         AvailableCopies += quantityToReturn;
         ReservedCopies -= quantityToReturn;
     }
-
 }

@@ -8,6 +8,10 @@ public class CheckStockService(IApplicationDbContext context) : ICheckStockServi
     public async Task<CheckStockServiceResponse> CheckStockAsync(CheckStockServiceRequest request)
     {
         var book = context.BookInventories.FirstOrDefault(x => x.BookId == request.bookId);
+        if (book  == null)
+        {
+            return new CheckStockServiceResponse(false, 0);
+        }
         return new CheckStockServiceResponse(book!.AvailableCopies >= request.quantity, book!.AvailableCopies);
     }
 }

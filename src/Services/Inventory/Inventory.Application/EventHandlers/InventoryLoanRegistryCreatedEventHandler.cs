@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Inventory.Application.EventHandlers;
 
-public class LoanRegistryCreatedEventHandler(IApplicationDbContext dbContext, ILogger<LoanRegistryCreatedEventHandler> logger) : IConsumer<LoanRegistryCreatedEvent>
+public class InventoryLoanRegistryCreatedEventHandler(IApplicationDbContext dbContext, ILogger<InventoryLoanRegistryCreatedEventHandler> logger) : IConsumer<LoanRegistryCreatedEvent>
 {
     public async Task Consume(ConsumeContext<LoanRegistryCreatedEvent> context)
     {
