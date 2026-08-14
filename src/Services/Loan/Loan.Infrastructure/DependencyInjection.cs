@@ -1,5 +1,6 @@
 using Loan.Application.Data;
 using Loan.Application.Services;
+using Loan.Infrastructure.BackgroundServices;
 using Loan.Infrastructure.Persistence;
 using Loan.Infrastructure.Services;
 using Member.Grpc;
@@ -30,6 +31,7 @@ public static class DependencyInjection
         builder.AddScoped<IApplicationDbContext, ApplicationDbContext>();
         builder.AddScoped<IMembershipService, MembershipService>();
         builder.AddScoped<IInventoryService, InventoryService>();
+        builder.AddHostedService<LoanRegistryStatusWorker>();
     }
 
     public static void ConfigureGrpc(this IServiceCollection builder, IConfiguration configuration)

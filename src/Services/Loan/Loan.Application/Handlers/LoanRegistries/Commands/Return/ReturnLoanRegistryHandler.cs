@@ -21,10 +21,12 @@ public class ReturnLoanRegistryHandler(
         {
             throw new LoanRegistryNotFoundException(loanRegistryId.Value);
         }
+        var userId = loanRegistry.UserId;
         loanRegistry.ReturnLoan();
         context.LoanRegistries.Update(loanRegistry);
         await context.SaveChangesAsync(cancellationToken);
         await publishEvent(loanRegistry, cancellationToken);
+        await UpdateMemberEligibility(userId, cancellationToken);
         return new ReturnLoanRegistryResult(loanRegistry.Id!.Value);
     }
 
@@ -39,5 +41,16 @@ public class ReturnLoanRegistryHandler(
             loanRegistry.Status.ToString(),
             loanRegistry.Items.Select(i => new LoanItemEventDto(i.BookId, i.Quantity)).ToList());
         await publishEndpoint.Publish(loanRegistryCreatedEvent, cancellationToken);
+    }
+
+    private async Task UpdateMemberEligibility(Guid userId, CancellationToken cancellationToken)
+    {
+        var loans = context.LoanRegistries.FirstOrDefault(x => x.UserId == userId);
+        if (loans != null)
+        {
+            return;
+        }
+        var memberLoanEligibilityRestoredEvent = new MemberLoanEligibilityRestoredEvent(userId);
+        await publishEndpoint.Publish(memberLoanEligibilityRestoredEvent, cancellationToken);
     }
 }
