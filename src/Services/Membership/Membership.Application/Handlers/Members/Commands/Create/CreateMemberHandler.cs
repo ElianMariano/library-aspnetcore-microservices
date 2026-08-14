@@ -17,9 +17,7 @@ public class CreateMemberHandler(
             request.member.name,
             request.member.email,
             request.member.status,
-            request.member.activeLoans,
-            request.member.maxLoans,
-            request.member.hasOverdueLoan);
+            request.member.maxLoans);
         await context.Members.AddAsync(member, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
         logger.LogCreateInformation(member.Id!.Value);

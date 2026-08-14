@@ -24,17 +24,15 @@ public class Member
         string name,
         string email,
         MemberStatus status,
-        int activeLoans,
-        int maxLoans,
-        bool hasOverdueLoan)
+        int maxLoans)
     {
         Id = new MemberId(Guid.NewGuid());
         Name = name;
         Email = email;
         Status = status;
-        ActiveLoans = activeLoans;
+        ActiveLoans = 0;
         MaxLoans = maxLoans;
-        HasOverdueLoan = hasOverdueLoan;
+        HasOverdueLoan = false;
     }
 
     public void Update(string name, string email)
@@ -69,5 +67,10 @@ public class Member
     public bool AbleToLoan(int quantity)
     {
         return ((this.ActiveLoans + quantity) <= this.MaxLoans) || this.HasOverdueLoan == false;
+    }
+
+    public void SetOverdueLoan(bool overdue)
+    {
+        this.HasOverdueLoan = overdue;
     }
 }
