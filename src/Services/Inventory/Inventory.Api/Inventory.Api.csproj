@@ -24,10 +24,6 @@
     <ProjectReference Include="..\Inventory.Application\Inventory.Application.csproj" />
     <ProjectReference Include="..\Inventory.Infrastructure\Inventory.Infrastructure.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Endpoints\Reservations\" />
-  </ItemGroup>
 	
   <ItemGroup>
     <Protobuf Include="..\..\..\BuildingBlocks\BuildingBlocks\Protos\Inventory.proto" GrpcServices="Server" />
