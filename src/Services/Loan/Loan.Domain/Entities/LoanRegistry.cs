@@ -23,14 +23,13 @@ public class LoanRegistry
 
     public LoanRegistry(
         Guid userId,
-        DateOnly dueDate,
-        LoanRegistryStatus status)
+        DateOnly dueDate)
     {
         Id = new LoanRegistryId(Guid.NewGuid());
         UserId = userId;
         LoanDate = DateOnly.FromDateTime(DateTime.Now);
         DueDate = dueDate;
-        Status = status;
+        Status = LoanRegistryStatus.Borrowed;
     }
 
     public void ChangeStatus(LoanRegistryStatus status)

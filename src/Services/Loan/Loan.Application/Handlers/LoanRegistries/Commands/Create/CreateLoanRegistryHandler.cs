@@ -26,8 +26,7 @@ public class CreateLoanRegistryHandler(
         await ValidateInventory(request, cancellationToken);
         var loanRegistry = new LoanRegistry(
             request.loanRegistry.userId,
-            request.loanRegistry.dueDate,
-            request.loanRegistry.status);
+            request.loanRegistry.dueDate);
         var items = request.loanRegistry.items.Select(x => new LoanItem(loanRegistry.Id, x.bookId, x.quantity)).ToList();
         loanRegistry.AddItems(items);
         await context.LoanRegistries.AddAsync(loanRegistry, cancellationToken);
