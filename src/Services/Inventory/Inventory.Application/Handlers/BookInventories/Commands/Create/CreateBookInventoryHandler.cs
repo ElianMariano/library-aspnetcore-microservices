@@ -15,7 +15,6 @@ public class CreateBookInventoryHandler(
     {
         var bookInventory = new BookInventory(
             request.bookInventory.bookId,
-            request.bookInventory.totalCopies,
             request.bookInventory.availableCopies,
             request.bookInventory.reservedCopies);
         await context.BookInventories.AddAsync(bookInventory, cancellationToken);

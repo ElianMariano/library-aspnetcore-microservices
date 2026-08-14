@@ -5,12 +5,12 @@ namespace Inventory.Domain.Entities;
 
 public class BookInventory
 {
-    // TODO: It would be interesting to use only bookId as the primary key, but for learning purposes, let's keep the Id separate.
+    // NOTE: It would be interesting to use only bookId as the primary key, but for learning purposes, let's keep the Id separate.
     public BookInventoryId Id { get; private init; }
 
     public Guid BookId { get; set; }
 
-    public int TotalCopies { get; set; }
+    public int TotalCopies => this.AvailableCopies + this.ReservedCopies;
 
     public int AvailableCopies { get; set; }
 
@@ -18,13 +18,11 @@ public class BookInventory
 
     public BookInventory(
         Guid bookId,
-        int totalCopies,
         int availableCopies,
         int reservedCopies)
     {
         Id = new BookInventoryId(Guid.NewGuid());
         BookId = bookId;
-        TotalCopies = totalCopies;
         AvailableCopies = availableCopies;
         ReservedCopies = reservedCopies;
     }
