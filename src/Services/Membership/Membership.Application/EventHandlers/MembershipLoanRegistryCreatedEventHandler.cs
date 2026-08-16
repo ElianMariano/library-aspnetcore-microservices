@@ -18,6 +18,7 @@ public class MembershipLoanRegistryCreatedEventHandler(IApplicationDbContext dbC
         {
             throw new MemberNotFoundException(context.Message.userId);
         }
+        // TODO: Verificar essa propriedade count
         member.AddNewActiveLoans(context.Message.items.Count);
         await dbContext.SaveChangesAsync(CancellationToken.None);
     }
