@@ -1,4 +1,5 @@
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -7,7 +8,7 @@ namespace BuildingBlocks.Messaging.MassTransit;
 
 public static class Extensions
 {
-    public static IServiceCollection AddMessageBroker(this IServiceCollection services, IConfiguration configuration, Assembly? assembly = null)
+    public static IServiceCollection AddMessageBroker<TDbContext>(this IServiceCollection services, IConfiguration configuration, Assembly? assembly = null) where TDbContext : DbContext
     {
         services.AddMassTransit(config =>
         {
@@ -17,6 +18,13 @@ public static class Extensions
             {
                 config.AddConsumers(assembly);
             }
+
+            config.AddEntityFrameworkOutbox<TDbContext>(o =>
+            {
+                o.UsePostgres();
+                o.UseBusOutbox();
+                o.DisableInboxCleanupService();
+            });
 
             config.UsingRabbitMq((context, configurator) =>
             {

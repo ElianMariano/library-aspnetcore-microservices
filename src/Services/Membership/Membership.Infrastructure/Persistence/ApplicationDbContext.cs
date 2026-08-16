@@ -1,3 +1,4 @@
+using MassTransit;
 using Membership.Application.Data;
 using Membership.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +13,9 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        modelBuilder.AddTransactionalOutboxEntities();
     }
 
     public DbSet<Member> Members => Set<Member>();

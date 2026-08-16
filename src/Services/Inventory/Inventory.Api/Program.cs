@@ -25,7 +25,7 @@ builder.Services.SwaggerDocument(options =>
 builder.Services.AddGrpc();
 builder.Services.Configuration(builder.Configuration.GetConnectionString("DefaultConnection")!);
 builder.Services.AddApplicationServices();
-builder.Services.BrokerConfig(builder.Configuration);
+builder.Services.BrokerConfig(builder.Configuration, Inventory.Application.Extensions.AssemblyReference.Assembly);
 builder.Services.AddExceptionHandler<ExceptionMiddleware>();
 builder.Services.AddProblemDetails();
 

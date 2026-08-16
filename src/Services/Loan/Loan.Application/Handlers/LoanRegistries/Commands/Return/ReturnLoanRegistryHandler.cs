@@ -24,9 +24,9 @@ public class ReturnLoanRegistryHandler(
         var userId = loanRegistry.UserId;
         loanRegistry.ReturnLoan();
         context.LoanRegistries.Update(loanRegistry);
-        await context.SaveChangesAsync(cancellationToken);
         await publishEvent(loanRegistry, cancellationToken);
         await UpdateMemberEligibility(userId, cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
         return new ReturnLoanRegistryResult(loanRegistry.Id!.Value);
     }
 

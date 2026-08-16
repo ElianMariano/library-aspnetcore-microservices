@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 using Stock.Grpc;
 using System.Data;
+using System.Reflection;
+using BuildingBlocks.Messaging.MassTransit;
 
 namespace Loan.Infrastructure;
 
@@ -28,7 +30,7 @@ public static class DependencyInjection
     {
         builder.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
         builder.AddScoped<IDbConnection>(sp => new NpgsqlConnection(connectionString));
-        builder.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+        builder.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
         builder.AddScoped<IMembershipService, MembershipService>();
         builder.AddScoped<IInventoryService, InventoryService>();
         builder.AddHostedService<LoanRegistryStatusWorker>();
@@ -44,5 +46,10 @@ public static class DependencyInjection
         {
             options.Address = new Uri(configuration["GrcpMemberServer"]!);
         });
+    }
+
+    public static void BrokerConfig(this IServiceCollection builder, IConfiguration configuration, Assembly? assembly = null)
+    {
+        builder.AddMessageBroker<ApplicationDbContext>(configuration, assembly);
     }
 }

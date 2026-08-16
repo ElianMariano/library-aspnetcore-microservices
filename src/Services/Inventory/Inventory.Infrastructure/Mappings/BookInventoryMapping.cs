@@ -15,8 +15,7 @@ public class BookInventoryMapping : IEntityTypeConfiguration<BookInventory>
             .HasConversion(id => id.Value, value => new BookInventoryId(value));
         builder.Property(bi => bi.BookId)
             .IsRequired();
-        builder.Property(bi => bi.TotalCopies)
-            .IsRequired();
+        builder.Ignore(bi => bi.TotalCopies);
         builder.Property(bi => bi.AvailableCopies)
             .IsRequired();
         builder.Property(bi => bi.ReservedCopies)

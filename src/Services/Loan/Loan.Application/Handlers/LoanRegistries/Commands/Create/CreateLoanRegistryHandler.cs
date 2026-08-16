@@ -7,6 +7,7 @@ using Loan.Application.Services;
 using Loan.Domain.Entities;
 using MassTransit;
 using MassTransit.Testing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Data;
 
@@ -30,9 +31,9 @@ public class CreateLoanRegistryHandler(
         var items = request.loanRegistry.items.Select(x => new LoanItem(loanRegistry.Id, x.bookId, x.quantity)).ToList();
         loanRegistry.AddItems(items);
         await context.LoanRegistries.AddAsync(loanRegistry, cancellationToken);
+        await publishEvent(loanRegistry, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
         logger.LogCreateInformation(loanRegistry.Id!.Value);
-        await publishEvent(loanRegistry, cancellationToken);
         return new CreateLoanRegistryResult(loanRegistry.Id!.Value);
     }
 
