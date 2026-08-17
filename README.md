@@ -223,6 +223,18 @@ docker compose up -d
 
 Once the containers are running, the API Gateway can be used as the entry point for interacting with the system.
 
+## API Collection
+
+A Postman collection is included in the repository to make it easier to explore and test the available API endpoints.
+
+The collection contains the routes used to interact with the Library Microservices through the API Gateway.
+
+You can find it in the `source` directory:
+
+**[Library Microservices Routes.postman_collection.json](https://github.com/ElianMariano/library-aspnetcore-microservices/blob/main/Library%20Microservices%20Routes.postman_collection.json)**
+
+After starting the application with Docker Compose, import the collection into **Postman** and use it to send requests to the available endpoints.
+
 ## Architectural Goals
 
 This project was built primarily to explore and demonstrate:
