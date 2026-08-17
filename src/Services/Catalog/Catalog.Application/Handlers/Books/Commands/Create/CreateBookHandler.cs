@@ -22,7 +22,7 @@ public class CreateBookHandler(
             new CategoryId(request.book.categoryId));
         await context.Books.AddAsync(book, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-        logger.LogCreateInformation(request.book.id);
-        return new CreateBookResult(request.book.id);
+        logger.LogCreateInformation(book.Id.Value);
+        return new CreateBookResult(book.Id.Value);
     }
 }
