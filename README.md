@@ -231,7 +231,7 @@ The collection contains the routes used to interact with the Library Microservic
 
 You can find it in the `source` directory:
 
-**[Library Microservices Routes.postman_collection.json]([https://github.com/ElianMariano/library-aspnetcore-microservices/blob/main/Library%20Microservices%20Routes.postman_collection.json](https://github.com/ElianMariano/library-aspnetcore-microservices/blob/main/src/Library%20Microservices%20Routes.postman_collection.json))**
+**[Library Microservices Routes.postman_collection.json]([https://github.com/ElianMariano/library-aspnetcore-microservices/blob/main/Library%20Microservices%20Routes.postman_collection.json](https://github.com/ElianMariano/library-aspnetcore-microservices/blob/main/src/Library%20Microservices%20Routes.postman_collection.json)**
 
 After starting the application with Docker Compose, import the collection into **Postman** and use it to send requests to the available endpoints.
 
