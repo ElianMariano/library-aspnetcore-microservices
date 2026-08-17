@@ -1,0 +1,652 @@
+{
+  "info": {
+    "_postman_id": "836584e4-6764-4772-9401-88b73936166e",
+    "name": "Library Microservices Routes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26075320"
+  },
+  "item": [
+    {
+      "name": "Catalog",
+      "item": [
+        {
+          "name": "Authors",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"J. K. Rowling\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/author",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "author"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/author",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "author"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/author",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "author"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetById",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/author",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "author"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetAllPaged",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/authors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authors"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Books",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"book\": {\r\n        \"title\": \"Harry Potter\",\r\n        \"isbn\": \"I232\",\r\n        \"publicationYear\": 2000,\r\n        \"authorId\": \"73175b94-1d0e-461e-bba2-c432ac2d64c1\",\r\n        \"categoryId\": \"d93a2097-d145-4ea6-afe2-489417cf800e\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/book",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "book"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"book\": {\r\n        \"id\": \"7fc524b3-b79d-4a55-8c22-7686bbda1333\",\r\n        \"title\": \"Harry Potter\",\r\n        \"isbn\": \"I232\",\r\n        \"publicationYear\": 2000,\r\n        \"authorId\": \"8e5d3e90-15b8-46e8-ab24-235a1161cd0f\",\r\n        \"categoryId\": \"1abb502c-8030-434b-9714-5d96e06181b0\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/book",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "book"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/book",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "book"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetById",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/book",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "book"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetAllPaged",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/books",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "books"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Categories",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Fantasia\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/category",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "category"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"category\": {\r\n        \"categoryId\": \"ea2b1b40-250e-452b-a77a-f75667ce5cbd\",\r\n        \"name\": \"Fantasia\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/category",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "category"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/category/ea2b1b40-250e-452b-a77a-f75667ce5cbd",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "category",
+                    "ea2b1b40-250e-452b-a77a-f75667ce5cbd"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"categoryId\": \"ea2b1b40-250e-452b-a77a-f75667ce5cbd\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/category",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "category"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetAllPaged",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Book Inventories",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"bookInventory\": {\r\n        \"bookId\": \"45c3d44a-0039-420b-b944-8672cb7ee3a8\",\r\n        \"totalCopies\": 10,\r\n        \"availableCopies\": 10,\r\n        \"reservedCopies\": 0\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bookinventory",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookinventory"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/bookinventory",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookinventory"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetById",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/bookinventory",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookinventory"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GetAllPaged",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/bookinventories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookinventories"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Loan",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"loanRegistry\": {\r\n        \"userId\": \"1a31908a-7212-47c4-b3c3-7922c20cbcd4\",\r\n        \"loanDate\": \"2026-08-13\",\r\n        \"dueDate\": \"2026-08-21\",\r\n        \"status\": 1,\r\n        \"items\": [\r\n            {\r\n                \"bookId\": \"45c3d44a-0039-420b-b944-8672cb7ee3a8\",\r\n                \"quantity\": 2\r\n            }\r\n        ]\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/loanregistry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "loanregistry"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Return",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"loanRegistryId\": \"ea56a2c6-2e02-4cf8-b714-0625f52063a5\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/returnloanregistry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "returnloanregistry"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetByid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/loanregistry/ea56a2c6-2e02-4cf8-b714-0625f52063a5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "loanregistry",
+                "ea56a2c6-2e02-4cf8-b714-0625f52063a5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAllPaged",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/loanregistries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "loanregistries"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Membership",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"member\": {\r\n        \"name\": \"User\",\r\n        \"email\": \"user@gmail.com\",\r\n        \"status\": 0,\r\n        \"activeLoans\": 0,\r\n        \"maxLoans\": 10,\r\n        \"hasOverdueLoan\": false\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/member",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/member",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/member",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/member/0f945c62-0356-43f8-806a-6f76f543a3a2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "member",
+                "0f945c62-0356-43f8-806a-6f76f543a3a2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAllPaged",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/members",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}
