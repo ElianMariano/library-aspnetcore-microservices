@@ -20,5 +20,7 @@ public class CreateLoanRegistryValidator : AbstractValidator<CreateLoanRegistryC
         RuleFor(x => x.loanRegistry.dueDate).DueDate();
 
         RuleFor(x => x.loanRegistry.items).Items();
+
+        RuleForEach(x => x.loanRegistry.items).SetValidator(new LoanItemRule());
     }
 }

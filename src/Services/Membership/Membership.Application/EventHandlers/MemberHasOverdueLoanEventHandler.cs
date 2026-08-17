@@ -20,7 +20,7 @@ public class MemberHasOverdueLoanEventHandler(
         {
             throw new MemberNotFoundException(memberId.Value);
         }
-        member.SetOverdueLoan(false);
+        member.SetOverdueLoan(true);
         await dbContext.SaveChangesAsync(CancellationToken.None);
     }
 }

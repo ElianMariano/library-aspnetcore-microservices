@@ -18,8 +18,8 @@ public class MembershipLoanRegistryReturnedEventHandler(IApplicationDbContext db
         {
             throw new MemberNotFoundException(context.Message.userId);
         }
-        // TODO: Verificar essa propriedade count
-        member.RemoveActiveLoans(context.Message.items.Count);
+        int quantity = context.Message.items.Sum(x => x.quantity);
+        member.RemoveActiveLoans(quantity);
         await dbContext.SaveChangesAsync(CancellationToken.None);
     }
 }

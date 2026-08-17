@@ -20,7 +20,7 @@ public class MemberLoanEligibilityRestoredEventHandler(
         {
             throw new MemberNotFoundException(memberId.Value);
         }
-        member.SetOverdueLoan(true);
+        member.SetOverdueLoan(false);
         await dbContext.SaveChangesAsync(CancellationToken.None);
     }
 }
