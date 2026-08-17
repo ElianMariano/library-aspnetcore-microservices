@@ -26,7 +26,7 @@ public class UpdateBookHandler(
             request.book.publicationYear);
         context.Books.Update(book);
         await context.SaveChangesAsync(cancellationToken);
-        logger.LogUpdateInformation(request.book.id);
-        return new UpdateBookResult(request.book.id);
+        logger.LogUpdateInformation(book.Id.Value);
+        return new UpdateBookResult(book.Id.Value);
     }
 }

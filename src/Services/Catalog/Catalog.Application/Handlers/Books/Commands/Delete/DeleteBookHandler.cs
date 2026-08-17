@@ -22,7 +22,7 @@ public class DeleteBookHandler(
         }
         context.Books.Remove(book);
         await context.SaveChangesAsync(cancellationToken);
-        logger.LogDeleteInformation(request.bookId);
+        logger.LogDeleteInformation(bookId.Value);
         return new DeleteBookResult(null);
     }
 }

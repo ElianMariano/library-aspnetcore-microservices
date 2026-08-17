@@ -22,7 +22,7 @@ public class DeleteMemberHandler(
         }
         context.Members.Remove(member);
         await context.SaveChangesAsync(cancellationToken);
-        logger.LogDeleteInformation(request.memberId);
+        logger.LogDeleteInformation(memberId.Value);
         return new DeleteMemberResult(null);
     }
 }

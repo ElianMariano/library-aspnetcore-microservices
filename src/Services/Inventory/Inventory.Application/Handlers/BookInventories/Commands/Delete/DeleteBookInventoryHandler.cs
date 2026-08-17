@@ -22,7 +22,7 @@ public class DeleteBookInventoryHandler(
         }
         context.BookInventories.Remove(bookInventory);
         await context.SaveChangesAsync(cancellationToken);
-        logger.LogDeleteInformation(request.bookInventoryId);
+        logger.LogDeleteInformation(bookInventoryId.Value);
         return new DeleteBookInventoryResult(null);
     }
 }

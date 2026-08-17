@@ -22,7 +22,7 @@ public class DeleteCategoryHandler(
         }
         context.Categories.Remove(category);
         await context.SaveChangesAsync(cancellationToken);
-        logger.LogDeleteInformation(request.categoryId);
+        logger.LogDeleteInformation(categoryId.Value);
         return new DeleteCategoryResult(null);
     }
 }

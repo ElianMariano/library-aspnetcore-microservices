@@ -22,7 +22,7 @@ public class DeleteAuthorHandler(
         }
         context.Authors.Remove(author);
         await context.SaveChangesAsync(cancellationToken);
-        logger.LogDeleteInformation(request.authorId);
+        logger.LogDeleteInformation(authorId.Value);
         return new DeleteAuthorResult(null);
     }
 }
