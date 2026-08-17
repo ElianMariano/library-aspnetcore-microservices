@@ -11,33 +11,44 @@ The project was inspired by the architecture and concepts presented in [Run-ASP.
 The system is composed of multiple independently deployable services that communicate through a combination of **synchronous gRPC calls** and **asynchronous events**.
 
 ```text
-                         ┌─────────────────┐
-                         │  YARP API       │
-                         │    Gateway      │
-                         └────────┬────────┘
-                                  │
-              ┌───────────────────┼───────────────────┐
-              │                   │                   │
-              ▼                   ▼                   ▼
-       ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-       │   Catalog   │     │    Loan     │     │ Membership  │
-       │   Service   │     │   Service   │     │   Service   │
-       └─────────────┘     └──────┬──────┘     └─────────────┘
-                                  │
-                                  │ gRPC
-                                  ▼
-                           ┌─────────────┐
-                           │  Inventory  │
-                           │   Service   │
-                           └─────────────┘
+                              ┌─────────────────────┐
+                              │   YARP API Gateway  │
+                              └──────────┬──────────┘
+                                         │ HTTP
+              ┌──────────────────────────┼──────────────────────────┐
+              │                          │                          │
+              ▼                          ▼                          ▼
+       ┌─────────────┐           ┌─────────────┐           ┌─────────────┐
+       │   Catalog   │           │    Loan     │           │ Membership  │
+       │   Service   │           │   Service   │           │   Service   │
+       │     API     │           │  API + gRPC │           │  API + gRPC │
+       └─────────────┘           └──────┬──────┘           └─────────────┘
+                                        │
+                                        │ gRPC
+                                        ▼
+                                 ┌─────────────┐
+                                 │  Inventory  │
+                                 │   Service   │
+                                 │  API + gRPC │
+                                 └─────────────┘
 
-                         Asynchronous Events
-                                  │
-                                  ▼
-                         ┌────────────────┐
-                         │    RabbitMQ    │
-                         │  + MassTransit │
-                         └────────────────┘
+
+                 ╔══════════════════════════════════════════╗
+                 ║          EVENT-DRIVEN COMMUNICATION     ║
+                 ╚══════════════════════════════════════════╝
+
+                              ┌─────────────────┐
+                              │     RabbitMQ    │
+                              │   + MassTransit │
+                              └────────┬────────┘
+                                       │
+                         ┌─────────────┼─────────────┐
+                         │             │             │
+                         ▼             ▼             ▼
+                  ┌────────────┐ ┌────────────┐ ┌────────────┐
+                  │ Membership │ │ Inventory  │ │    Loan    │
+                  │  Consumer  │ │  Consumer  │ │  Consumer  │
+                  └────────────┘ └────────────┘ └────────────┘
 ```
 
 ## Services
